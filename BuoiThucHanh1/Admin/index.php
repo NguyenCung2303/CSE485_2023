@@ -36,12 +36,12 @@
 ?>
 
 <!-- Hiển thị thông tin thống kê trên trang -->
-<!-- <div>
+ <!-- <div>
     <p>Số lượng thể loại: <?php echo $count_theloai; ?></p>
     <p>Số lượng tác giả: <?php echo $count_tacgia; ?></p>
     <p>Số lượng bài viết: <?php echo $count_baiviet; ?></p>
     <p>Số lượng người dùng: <?php echo $count_users; ?></p>
-</div> -->
+</div>  -->
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">

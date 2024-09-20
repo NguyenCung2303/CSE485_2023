@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Truy vấn dữ liệu từ bảng thể loại
-$sql = "SELECT ma_tloai, ten_tloai FROM theloai";
+$sql = "SELECT ma_tgia, ten_tgia, hinh_tgia FROM tacgia";
 $result = $conn->query($sql);
 ?>
 
@@ -48,10 +48,10 @@ $result = $conn->query($sql);
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="category.php">Thể loại</a>
+                        <a class="nav-link" href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="author.php">Tác giả</a>
+                        <a class="nav-link active fw-bold" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="article.php">Bài viết</a>
@@ -64,12 +64,12 @@ $result = $conn->query($sql);
     <main class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
+                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Tên thể loại</th>
+                            <th scope="col">Tên tác giả</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
@@ -80,10 +80,10 @@ $result = $conn->query($sql);
                             // Hiển thị dữ liệu
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<th scope='row'>" . $row['ma_tloai'] . "</th>";
-                                echo "<td>" . $row['ten_tloai'] . "</td>";
-                                echo "<td><a href='edit_category.php?id=" . $row['ma_tloai'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-                                echo "<td><a href='del_category.php?id=" . $row['ma_tloai'] . "'><i class='fa-solid fa-trash'></i></a></td>";
+                                echo "<th scope='row'>" . $row['ma_tgia'] . "</th>";
+                                echo "<td>" . $row['ten_tgia'] . "</td>";
+                                echo "<td><a href='edit_author.php?id=" . $row['ma_tgia'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+                                echo "<td><a href='del_author.php?id=" . $row['ma_tgia'] . "'><i class='fa-solid fa-trash'></i></a></td>";
                                 echo "</tr>";
                             }
                         } else {
