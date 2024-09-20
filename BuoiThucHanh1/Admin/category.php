@@ -57,31 +57,33 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Nhạc trữ tình</td>
-                            <td>
-                                <a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Nhạc cách mạng</td>
-                            <td>
-                                <a href="edit_category.php?id=2"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </td>
-                            <td>
-                                <a href=""><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                       
+                        
+                        <?php
+                        include 'db.php'; // Kết nối CSDL
+
+                        // Truy vấn lấy danh sách thể loại
+                        $sql = "SELECT ma_tloai, ten_tloai FROM the_loai";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            // Hiển thị dữ liệu
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<th scope='row'>" . $row['ma_tloai'] . "</th>";
+                                echo "<td>" . $row['ten_tloai'] . "</td>";
+                                echo "<td><a href='edit_category.php?id=" . $row['ma_tloai'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+                                echo "<td><a href='del_category.php?id=" . $row['ma_tloai'] . "'><i class='fa-solid fa-trash'></i></a></td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
+                        }
+            ?>
                     </tbody>
                 </table>
             </div>
         </div>
+        
     </main>
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
