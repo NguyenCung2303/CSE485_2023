@@ -43,26 +43,59 @@
 
     </header>
     <main class="container mt-5 mb-5">
+    <div class="row">
+            <div class="col-sm">
+                
+                <table class="table">
+                <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Tên thể loại</th>
+                            <th scope="col">Tác giả</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
                     <?php
                         include 'db.php'; // Kết nối CSDL
 
                         // Truy vấn lấy danh sách thể loại
-                        $sql = "SELECT ma_tgia, ten_tgia FROM tacgia";
+                        $sql = "SELECT 
+                                    bv.ma_bviet,
+                                    bv.tieude,
+                                    bv.tomtat,
+                                    bv.ngayviet,
+                                    tg.ten_tgia AS ten_tac_gia,
+                                    tl.ten_tloai AS ten_the_loai
+                                FROM 
+                                    baiviet bv
+                                JOIN 
+                                    tacgia tg ON bv.ma_tgia = tg.ma_tgia
+                                JOIN 
+                                    theloai tl ON bv.ma_tloai = tl.ma_tloai";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
                             // Hiển thị dữ liệu
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<th scope='row'>" . $row['ma_tgia'] . "</th>";
-                                echo "<td>" . $row['ten_tgia'] . "</td>";
+                                echo "<th scope='row'>" . $row['ma_bviet'] . "</th>";
+                                echo "<td>" . $row['tieude'] . "</td>";
+                                echo "<td>" . $row['ten_the_loai'] . "</td>";
+                                echo "<td>" . $row['ten_tac_gia'] . "</td>";
                                 echo "</tr>";
                             }
                         } else {
                             echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
                         }
             ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
+    
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>
