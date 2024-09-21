@@ -45,12 +45,12 @@
     <main class="container mt-5 mb-5">
     <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
+                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Tên thể loại</th>
+                            <th scope="col">Tên tác giả</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
@@ -61,7 +61,7 @@
                         include 'db.php'; // Kết nối CSDL
 
                         // Truy vấn lấy danh sách thể loại
-                        $sql = "SELECT ma_tgia, ten_tgia FROM tac_gia";
+                        $sql = "SELECT ma_tgia, ten_tgia FROM tacgia";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -70,8 +70,8 @@
                                 echo "<tr>";
                                 echo "<th scope='row'>" . $row['ma_tgia'] . "</th>";
                                 echo "<td>" . $row['ten_tgia'] . "</td>";
-                                echo "<td><a href='edit_category.php?id=" . $row['ma_tgia'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-                                echo "<td><a href='del_category.php?id=" . $row['ma_tgia'] . "'><i class='fa-solid fa-trash'></i></a></td>";
+                                echo "<td><a href='edit_author.php?id=" . $row['ma_tgia'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+                                echo "<td><a href='del_author.php?id=" . $row['ma_tgia'] . "'><i class='fa-solid fa-trash'></i></a></td>";
                                 echo "</tr>";
                             }
                         } else {

@@ -1,3 +1,25 @@
+<?php
+include 'db.php'; // Kết nối cơ sở dữ liệu
+
+// Kiểm tra thông báo lỗi và lấy ID
+$errorMsg = isset($_GET['error']) ? $_GET['error'] : '';
+$catId = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($catId) {
+    // Truy vấn để lấy thông tin thể loại hiện tại
+    $sql = "SELECT ten_tloai FROM theloai WHERE ma_tloai = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $catId);
+    $stmt->execute();
+    $stmt->bind_result($catName);
+    $stmt->fetch();
+    $stmt->close();
+} else {
+    header("Location: category.php?error=ID thể loại không hợp lệ.");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,15 +70,22 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-                <form action="process_add_category.php" method="post">
+                      <!-- Hiển thị thông báo lỗi nếu có -->
+                    <?php if ($errorMsg): ?>
+                        <div class="alert alert-danger">
+                            <?php echo htmlspecialchars($errorMsg); ?>
+                        </div>
+                    <?php endif; ?>
+                
+                <form action="proccess_edit_category.php" method="post">
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã thể loại</span>
-                        <input type="text" class="form-control" name="txtCatId" readonly value="1">
+                        <input type="text" class="form-control" name="txtCatId" value="<?php echo htmlspecialchars($catId); ?>" readonly>
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "Nhạc trữ tình">
+                        <input type="text" class="form-control" name="txtCatName" value="<?php echo htmlspecialchars($catName); ?>" required>
                     </div>
 
                     <div class="form-group  float-end ">

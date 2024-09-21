@@ -62,7 +62,7 @@
                         include 'db.php'; // Kết nối CSDL
 
                         // Truy vấn lấy danh sách thể loại
-                        $sql = "SELECT ma_tloai, ten_tloai FROM the_loai";
+                        $sql = "SELECT ma_tloai, ten_tloai FROM theloai";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {

@@ -1,8 +1,4 @@
-<?php if (isset($_GET['msg'])): ?>
-    <div class="alert alert-success" role="alert">
-        <?php echo $_GET['msg']; ?>
-    </div>
-<?php endif; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,10 +30,10 @@
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="category.php">Thể loại</a>
+                        <a class="nav-link" href="category.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="author.php">Tác giả</a>
+                        <a class="nav-link  active fw-bold" href="author.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="article.php">Bài viết</a>
@@ -52,13 +48,13 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
-                <form action="proccess_add_category.php" method="post">
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới tác giả</h3>
+                <form action="proccess_add_author.php" method="post">
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
+                        <span class="input-group-text" id="AuthorName">Tên tác giả</span>
                         <input type="text" class="form-control" name="txtCatName" >
                     </div>
-
+                    
                     <div class="form-group  float-end ">
                         <input type="submit" value="Thêm" class="btn btn-success">
                         <a href="category.php" class="btn btn-warning ">Quay lại</a>
