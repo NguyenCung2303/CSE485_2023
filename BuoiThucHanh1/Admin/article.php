@@ -45,7 +45,7 @@
     <main class="container mt-5 mb-5">
     <div class="row">
             <div class="col-sm">
-                
+            <a href="add_article.php" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                 <thead>
                         <tr>
@@ -53,7 +53,8 @@
                             <th scope="col">Tiêu đề</th>
                             <th scope="col">Tên thể loại</th>
                             <th scope="col">Tác giả</th>
-                            
+                            <th>Sửa</th>
+                            <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,6 +85,8 @@
                                 echo "<td>" . $row['tieude'] . "</td>";
                                 echo "<td>" . $row['ten_the_loai'] . "</td>";
                                 echo "<td>" . $row['ten_tac_gia'] . "</td>";
+                                echo "<td><a href='edit_article.php?id=" . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+                                echo "<td><a href='del_article.php?id="  . "'><i class='fa-solid fa-trash'></i></a></td>";
                                 echo "</tr>";
                             }
                         } else {
