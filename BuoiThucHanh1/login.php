@@ -1,3 +1,7 @@
+<?php 
+    echo password_hash(password:'1234567',algo: PASSWORD_DEFAULT);
+    echo password_hash(password:'1234567',algo: PASSWORD_DEFAULT)
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
