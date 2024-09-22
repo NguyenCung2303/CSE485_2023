@@ -6,7 +6,7 @@
             $catName = $_POST['txtCatName'];
 
             // Thêm thể loại vào cơ sở dữ liệu
-            $sql = "SELECT FROM tacgia (ten_tgia) VALUES (?)";
+            $sql = "SELECT FROM baiviet  VALUES (?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("s", $catName);
 

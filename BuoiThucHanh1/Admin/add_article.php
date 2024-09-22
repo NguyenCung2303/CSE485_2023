@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,21 +21,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Trang ngoài</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="category.php">Thể loại</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="author.php">Tác giả</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active fw-bold" href="article.php">Bài viết</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="./">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../index.php">Trang ngoài</a></li>
+                        <li class="nav-item"><a class="nav-link" href="category.php">Thể loại</a></li>
+                        <li class="nav-item"><a class="nav-link" href="author.php">Tác giả</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-bold" href="article.php">Bài viết</a></li>
                     </ul>
                 </div>
             </div>
@@ -59,9 +46,9 @@
                     // Truy vấn và hiển thị danh sách thể loại
                     $sql = "SELECT ma_tloai, ten_tloai FROM theloai";
                     $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
+                    if ($result && $result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['ma_tloai'] . "'>" . $row['ten_tloai'] . "</option>";
+                            echo "<option value='" . htmlspecialchars($row['ma_tloai']) . "'>" . htmlspecialchars($row['ten_tloai']) . "</option>";
                         }
                     }
                     ?>
@@ -71,20 +58,23 @@
                 <label for="authorSelect" class="form-label">Tác giả</label>
                 <select class="form-select" id="authorSelect" name="author_id" required>
                     <?php
-                    include("db.php"); 
                     // Truy vấn và hiển thị danh sách tác giả
                     $sql = "SELECT ma_tgia, ten_tgia FROM tacgia";
                     $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
+                    if ($result && $result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['ma_tgia'] . "'>" . $row['ten_tgia'] . "</option>";
+                            echo "<option value='" . htmlspecialchars($row['ma_tgia']) . "'>" . htmlspecialchars($row['ten_tgia']) . "</option>";
                         }
                     }
                     ?>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="articleContent" class="form-label">Nội dung</label>
+                <label for="articleNameSong" class="form-label">Tên bài hát</label>
+                <textarea class="form-control" id="articleNameSong" name="txtNameSong" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="articleContent" class="form-label">Tóm tắt</label>
                 <textarea class="form-control" id="articleContent" name="txtContent" rows="5" required></textarea>
             </div>
             <div class="form-group">
@@ -99,4 +89,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
-

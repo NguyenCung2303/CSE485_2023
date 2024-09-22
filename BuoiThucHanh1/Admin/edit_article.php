@@ -1,22 +1,32 @@
-
 <?php
 include 'db.php'; // Kết nối cơ sở dữ liệu
 
-// Kiểm tra thông báo lỗi và lấy ID
-$errorMsg = isset($_GET['error']) ? $_GET['error'] : '';
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối không thành công: " . $conn->connect_error);
+}
+
+// Kiểm tra thông báo lỗi và lấy ID bài viết
+$errorMsg = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
 $postId = isset($_GET['id']) ? $_GET['id'] : null;
 
 if ($postId) {
     // Truy vấn để lấy thông tin bài viết hiện tại
-    $sql = "SELECT tieu_de, noi_dung FROM baiviet WHERE ma_bai_viet = ?";
+    $sql = "SELECT tieude, ten_bhat, tomtat FROM baiviet WHERE ma_bviet = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $postId);
     $stmt->execute();
-    $stmt->bind_result($postTitle, $postContent);
-    $stmt->fetch();
+    $stmt->bind_result($postTitle, $postNameSong, $postContent);
+
+    if ($stmt->fetch()) {
+        // Thông tin bài viết đã được lấy thành công
+    } else {
+        header("Location: article.php?error=" . urlencode("Không tìm thấy bài viết."));
+        exit;
+    }
     $stmt->close();
 } else {
-    header("Location: baiviet.php?error=ID bài viết không hợp lệ.");
+    header("Location: article.php?error=" . urlencode("ID bài viết không hợp lệ."));
     exit;
 }
 ?>
@@ -28,12 +38,11 @@ if ($postId) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music for Life</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style_login.css">
 </head>
 <body>
-        
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
@@ -41,26 +50,16 @@ if ($postId) {
                     <a class="navbar-brand" href="#">Administration</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.php">Trang ngoài</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="category.php">Thể loại</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="author.php">Tác giả</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="article.php">Bài viết</a>
-                    </li>
-                </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="./">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../index.php">Trang ngoài</a></li>
+                        <li class="nav-item"><a class="nav-link" href="category.php">Thể loại</a></li>
+                        <li class="nav-item"><a class="nav-link" href="author.php">Tác giả</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-bold" href="article.php">Bài viết</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -70,32 +69,37 @@ if ($postId) {
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin bài viết</h3>
-                <!-- Hiển thị thông báo lỗi nếu có -->
+                
                 <?php if ($errorMsg): ?>
                     <div class="alert alert-danger">
-                        <?php echo htmlspecialchars($errorMsg); ?>
+                        <?php echo $errorMsg; ?>
                     </div>
                 <?php endif; ?>
                 
-                <form action="proccess_edit_baiviet.php" method="post">
-                    <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblPostId">Mã bài viết</span>
-                        <input type="text" class="form-control" name="txtPostId" value="<?php echo htmlspecialchars($postId); ?>" readonly>
+                <form action="proccess_edit_article.php" method="post">
+                    <div class="mb-3">
+                        <label for="postId" class="form-label">Mã bài viết</label>
+                        <input type="text" class="form-control" id="postId" name="txtPostId" value="<?php echo htmlspecialchars($postId); ?>" readonly>
                     </div>
 
-                    <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblPostTitle">Tên bài viết</span>
-                        <input type="text" class="form-control" name="txtPostTitle" value="<?php echo htmlspecialchars($postTitle); ?>" required>
+                    <div class="mb-3">
+                        <label for="postTitle" class="form-label">Tiêu đề</label>
+                        <input type="text" class="form-control" id="postTitle" name="txtTitle" value="<?php echo htmlspecialchars($postTitle); ?>" required>
                     </div>
-
-                    <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblPostContent">Nội dung bài viết</span>
-                        <textarea class="form-control" name="txtPostContent" rows="5" required><?php echo htmlspecialchars($postContent); ?></textarea>
+                    
+                    <div class="mb-3">
+                        <label for="postNameSong" class="form-label">Tên bài hát</label>
+                        <input type="text" class="form-control" id="postNameSong" name="txtNameSong" value="<?php echo htmlspecialchars($postNameSong); ?>" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="postContent" class="form-label">Tóm tắt</label>
+                        <textarea class="form-control" id="postContent" name="txtContent" rows="5" required><?php echo htmlspecialchars($postContent); ?></textarea>
                     </div>
 
                     <div class="form-group float-end">
                         <input type="submit" value="Lưu lại" class="btn btn-success">
-                        <a href="baiviet.php" class="btn btn-warning">Quay lại</a>
+                        <a href="article.php" class="btn btn-warning">Quay lại</a>
                     </div>
                 </form>
             </div>
@@ -105,6 +109,6 @@ if ($postId) {
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary border-2" style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
