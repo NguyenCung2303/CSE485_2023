@@ -84,7 +84,7 @@
                     <img src="images/songs/csmt.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Cuộc sống mến thương</a>
+                            <a href="detail1.php?id=11" class="text-decoration-none">Cuộc sống mến thương</a>
                         </h5>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <img src="images/songs//longme.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Lòng mẹ</a>
+                            <a href="detail2.php?id=1" class="text-decoration-none">Lòng mẹ</a>
                         </h5>
                     </div>
                 </div>
