@@ -1,37 +1,49 @@
 <?php
-session_start();
-include("Admin/db.php"); // Đảm bảo đường dẫn tới db.php là chính xác
+session_start(); // Khởi động PHP session
+include "./Admin/db.php"; // Kết nối đến cơ sở dữ liệu
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
+    // Nhận thông tin đăng nhập
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    
     // Truy vấn để lấy thông tin người dùng
-    $stmt = $conn->prepare("SELECT id, ten_dang_nhap, mat_khau FROM tai_khoan WHERE ten_dang_nhap = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql = "SELECT * FROM tai_khoan WHERE ten_dang_nhap=?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-
-        // Kiểm tra mật khẩu
-        if (password_verify($password, $user['mat_khau'])) { 
-            // Lưu thông tin người dùng vào session
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['ten_dang_nhap'];
-
-            // Chuyển hướng đến trang chính admin
-            header("Location: Admin/index.php"); // Đảm bảo đường dẫn đúng
-            exit();
+        // Kiểm tra xem có người dùng nào với tên đăng nhập này không
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            // Kiểm tra mật khẩu
+            if (password_verify($password, $row['mat_khau'])) { // Chỉnh sửa tên cột cho đúng
+                // Đăng nhập thành công, lưu vào session
+                $_SESSION['user_id'] = $row['id']; // Lưu ID người dùng
+                $_SESSION['username'] = $username;
+                $_SESSION['success_message'] = 'Đăng nhập thành công.';
+                // Chuyển hướng đến trang admin
+                header("Location: ./admin/index.php");
+                exit();
+            } else {
+                $error_message = 'Mật khẩu không đúng.';
+            }
         } else {
-            $error = "Mật khẩu không đúng!";
+            $error_message = 'Tài khoản không tồn tại.';
         }
     } else {
-        $error = "Người dùng không tồn tại!";
+        $error_message = 'Đã có lỗi xảy ra trong quá trình xác thực.';
     }
-    
-    // Đóng kết nối
-    $stmt->close();
 }
+
+$conn->close();
 ?>
+
+<!-- Hiển thị thông báo lỗi nếu có -->
+<?php if (isset($error_message)): ?>
+    <script>
+        alert('<?php echo $error_message; ?>');
+        window.location.href = "login.php"; // Thay đổi thành trang đăng nhập của bạn
+    </script>
+<?php endif; ?>

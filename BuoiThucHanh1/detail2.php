@@ -70,7 +70,7 @@
         ?>
                 <div class="row mb-5">
                     <div class="col-sm-4">
-                        <img src="images/songs/cayvagio.jpg" class="img-fluid" alt="<?php echo htmlspecialchars($row['ten_bhat']); ?>">
+                        <img src="images/songs/longme.jpg" class="img-fluid" alt="<?php echo htmlspecialchars($row['ten_bhat']); ?>">
                     </div>
                     <div class="col-sm-8">
                         <h5 class="card-title mb-2">
