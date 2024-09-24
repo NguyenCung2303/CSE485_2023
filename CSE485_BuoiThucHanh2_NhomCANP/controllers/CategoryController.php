@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/btth02_qa
 class CategoryController{
     // Hàm xử lý hành động index
     public function index(){
@@ -6,6 +10,7 @@ class CategoryController{
         echo "Tương tác với Services/Models from Category";
         // Nhiệm vụ 2: Tương tác với View
         echo "Tương tác với View from Category";
+<<<<<<< HEAD
           }
 
      public function add(){
@@ -44,4 +49,21 @@ class CategoryController{
         // Nhiệm vụ 2: Tương tác với View
          include "views/category/list_category.php";
      }
+=======
+    }
+
+    public function add(){
+        // Nhiệm vụ 1: Tương tác với Services/Models
+        // echo "Tương tác với Services/Models from Category";
+        // Nhiệm vụ 2: Tương tác với View
+        include("views/article/add_article.php");
+    }
+
+    public function list(){
+        // Nhiệm vụ 1: Tương tác với Services/Models
+        // echo "Tương tác với Services/Models from Article";
+        // Nhiệm vụ 2: Tương tác với View
+        include("views/article/list_article.php");
+    }
+>>>>>>> origin/btth02_qa
 }

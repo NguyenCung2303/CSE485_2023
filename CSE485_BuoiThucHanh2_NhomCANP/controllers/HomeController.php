@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 include_once "services/ArticleService.php";
 include_once "services/CategoryService.php";
 class HomeController{
@@ -16,5 +17,11 @@ class HomeController{
         $categorys = $categoryService->getAllCategory();
         // Nhiệm vụ 2: Tương tác với View
         include "/xampp/htdocs/CANP/CSE485_BuoiThucHanh2_NhomCANP/views/home/index.php";
+=======
+class HomeController{
+    // Hàm xử lý hành động index
+    public function index(){
+        include("views/home/index.php");
+>>>>>>> origin/btth02_qa
     }
 }
