@@ -73,11 +73,7 @@
                     <img src="images/songs/cayvagio.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-<<<<<<< HEAD
-                            <a href="detail.php" class="text-decoration-none">Cây, lá và gió</a>
-=======
                             <a href="detail.php?id=12" class="text-decoration-none">Cây, lá và gió</a>
->>>>>>> 956126fa68e5e6932742d40f9866de7fe5ef9d1c
                         </h5>
                     </div>
                 </div>
@@ -110,7 +106,7 @@
                     <img src="images/songs/phoipha.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Phôi pha</a>
+                            <a href="detail3.php?id=22" class="text-decoration-none">Phôi pha</a>
                         </h5>
                     </div>
                 </div>
@@ -121,7 +117,7 @@
                     <img src="images/songs/noitinhyeubatdau.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center my-title">
-                            <a href="" class="text-decoration-none">Nơi tình yêu bắt đầu</a>
+                            <a href="detail4.php?id=8" class="text-decoration-none">Nơi tình yêu bắt đầu</a>
                         </h5>
                     </div>
                 </div>
