@@ -1,5 +1,5 @@
 <?php
-include("configs/DBConnection.php");
+include_once("configs/DBConnection.php");
 include("models/Article.php");
 class ArticleService{
     public function getAllArticles(){
@@ -16,6 +16,7 @@ class ArticleService{
         while($row = $stmt->fetch()){
             $article = new Article($row['tieude'], $row['tomtat'], $row['ten_tloai']);
             array_push($articles,$article);
+            
         }
         // Mảng (danh sách) các đối tượng Article Model
 
