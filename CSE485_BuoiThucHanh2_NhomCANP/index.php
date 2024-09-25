@@ -29,3 +29,41 @@ require_once($controllerPath);
 // B4. Tạo đối tượng và gọi hàm của Controller
 $myObj = new $controller();  //controller=home > new HomeController()
 $myObj->$action(); //action=index > index()
+
+
+// index.php
+
+// Kết nối cơ sở dữ liệu
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "btth01_cse485";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+
+// Xác định controller và action
+$controller = isset($_GET['controller']) ? $_GET['controller'] : 'login';
+$action = isset($_GET['action']) ? $_GET['action'] : 'showForm';
+
+// Nạp controller
+switch ($controller) {
+    case 'login':
+        require_once 'controllers/login.php';
+        $loginController = new LoginController($conn);
+        break;
+    // Thêm các controller khác ở đây
+    default:
+        require_once 'controllers/login.php';
+        $loginController = new LoginController($conn);
+        break;
+}
+
+// Gọi action tương ứng
+if (method_exists($loginController, $action)) {
+    $loginController->$action();
+} else {
+    echo "Action không tồn tại!";
+}
