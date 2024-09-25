@@ -1,6 +1,6 @@
 <?php
+require_once APP_ROOT."/app/models/Article";
 include_once("configs/DBConnection.php");
-include("models/Article.php");
 class ArticleService{
     public function getAllArticles(){
         // 4 bước thực hiện

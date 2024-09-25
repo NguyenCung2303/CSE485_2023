@@ -12,6 +12,8 @@
 <!-- Action là tên cả HÀM trong FILE controller mà chúng ta gọi -->
 
 <?php
+require_once('../app/configs/config.php');
+require_once APP_ROOT.'/app/services/ArticleService.php';
 // B1: Bắt giá trị controller và action
 $controller = isset($_GET['controller'])?   $_GET['controller']:'home';
 $action     = isset($_GET['action'])?       $_GET['action']:'index';
