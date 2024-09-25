@@ -54,13 +54,10 @@ switch ($controller) {
         require_once 'controllers/login.php';
         $loginController = new LoginController($conn);
         break;
-<<<<<<< HEAD:CSE485_BuoiThucHanh2_NhomCANP/app/index.php
     case 'ArticleController':
             require_once 'controllers/login.php';
             $loginController = new LoginController($conn);
             break;
-=======
->>>>>>> 342b362e51794a912690b08b676e9dcdf1f728e1:CSE485_BuoiThucHanh2_NhomCANP/index.php
     // Thêm các controller khác ở đây
     default:
         require_once 'controllers/login.php';
@@ -74,9 +71,6 @@ if (method_exists($loginController, $action)) {
 } else {
     echo "Action không tồn tại!";
 }
-<<<<<<< HEAD:CSE485_BuoiThucHanh2_NhomCANP/app/index.php
 
 include(__DIR__ . '/views/author/author_view.php');
 ?>
-=======
->>>>>>> 342b362e51794a912690b08b676e9dcdf1f728e1:CSE485_BuoiThucHanh2_NhomCANP/index.php
