@@ -1,7 +1,11 @@
 <?php
 // controllers/LoginController.php
 
+<<<<<<< HEAD:CSE485_BuoiThucHanh2_NhomCANP/app/controllers/login.php
 require_once(__DIR__ . '/../models/login.php');
+=======
+require_once 'models/UserModel.php';
+>>>>>>> 342b362e51794a912690b08b676e9dcdf1f728e1:CSE485_BuoiThucHanh2_NhomCANP/controllers/login.php
 
 class LoginController {
     private $userModel;
