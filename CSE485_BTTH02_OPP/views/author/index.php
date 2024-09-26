@@ -48,7 +48,7 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
+                <a href="index.php?controller=author&action=add" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                 <thead>
     <tr>
@@ -66,9 +66,9 @@ if (isset($authors) && is_array($authors)) {
     foreach ($authors as $author) {
         echo "<tr>";
         echo "<td>{$author->getID()}</td>";
-        echo "<td>{$author->getCat_name()}</td>"; // In tên thể loại
-        echo "<td><a href='edit_author.php?id={$author->getID()}'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-        echo "<td><a href='del_author.php?id={$author->getID()}'><i class='fa-solid fa-trash'></i></a></td>";
+        echo "<td>{$author->getAu_name()}</td>"; // In tên thể loại
+        echo "<td><a href='index.php?controller=author&action=edit&id={$author->getId()}'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+        echo "<td><a href='index.php?controller=author&action=del&id={$author->getId()}' onclick='return confirm(\"Bạn có chắc chắn muốn xóa thể loại này không?\");'><i class='fa-solid fa-trash'></i></a></td>";
         echo "</tr>";
     }
 } else {

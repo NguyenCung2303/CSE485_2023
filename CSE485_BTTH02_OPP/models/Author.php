@@ -3,18 +3,18 @@ class Author{
     // Thuộc tính
     private $id;
 
-    private $cat_name;
+    private $au_name;
 
-    public function __construct($id,$cat_name){
+    public function __construct($id,$au_name){
         $this->id = $id;
-        $this->cat_name = $cat_name;
+        $this->au_name = $au_name;
     }
 
     // Setter và Getter
     public function getId(){
         return $this->id;
     }
-        public function getCat_name(){
-        return $this->cat_name;
+        public function getAu_name(){
+        return $this->au_name;
     }
 }

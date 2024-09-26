@@ -46,12 +46,14 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
+                <a href="index.php?controller=article&action=add" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                 <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Tên thể loại</th>
+        <th scope="col">Tiêu đề</th>
+        <th scope="col">Tóm tắt</th>
+        <th scope="col">Tên bài hát</th>
         <th>Sửa</th>
         <th>Xóa</th>
     </tr>
@@ -63,8 +65,10 @@
         echo "<tr>";
         echo "<td>{$article->getID()}</td>";
         echo "<td>{$article->getTitle()}</td>"; // In tên thể loại
-        echo "<td><a href='edit_author.php?id="  . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-        echo "<td><a href='del_author.php?id=" . "'><i class='fa-solid fa-trash'></i></a></td>";
+        echo "<td>{$article->getSummary()}</td>";
+        echo "<td>{$article->getCat_name()}</td>";
+        echo "<td><a href='index.php?controller=article&action=edit&id={$article->getId()}'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+        echo "<td><a href='index.php?controller=article&action=del&id={$article->getId()}' onclick='return confirm(\"Bạn có chắc chắn muốn xóa thể loại này không?\");'><i class='fa-solid fa-trash'></i></a></td>";
         echo "</tr>";
         
     }

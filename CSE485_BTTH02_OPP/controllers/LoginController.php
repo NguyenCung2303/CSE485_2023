@@ -1,42 +1,32 @@
 <?php
 // controllers/LoginController.php
+include("services/LoginService.php");
 
-require_once(__DIR__ . '/../models/Login.php');
-
-class LoginController{
-    private $userModel;
-
-    public function __construct($dbConnection) {
-        $this->userModel = new UserModel($dbConnection);
-    }
-
-    // Hiển thị form đăng nhập
+class LoginController {
+    
     public function showForm() {
-        include 'views/login_form.php';
+        // Hiển thị form đăng nhập
+        include("views/login_form.php");
     }
 
     // Xử lý đăng nhập
     public function authenticate() {
         session_start();
+        $loginService = new LoginService();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            $username = $_POST['ten_dang_nhap'] ?? '';
+            $password = $_POST['mat_khau'] ?? '';
 
-            $user = $this->userModel->checkLogin($username, $password);
+            // Sử dụng LoginService để xác thực
+            $user = $loginService->authenticate($username, $password); // Đã sửa ở đây
             if ($user) {
-                $_SESSION['username'] = $user['username'];
+                $_SESSION['ten_dang_nhap'] = $user['ten_dang_nhap'];
                 header('Location: index.php?controller=homepage&action=showHomepage');
+                exit(); // Đảm bảo dừng script
             } else {
                 $error = "Tên đăng nhập hoặc mật khẩu không chính xác!";
                 include 'views/login_form.php';
             }
         }
-    }
-
-    // Xử lý đăng xuất
-    public function logout() {
-        session_start();
-        session_destroy();
-        header('Location: index.php?controller=login&action=showForm');
     }
 }

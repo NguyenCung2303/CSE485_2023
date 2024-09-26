@@ -5,6 +5,7 @@ class Article{
     private $title;
     private $summary;
     private $cat_name;
+    
 
     public function __construct($id,$title, $summary,$cat_name){
         $this->id = $id;
@@ -26,4 +27,5 @@ class Article{
     public function getCat_name(){
         return $this->cat_name;
     }
+    
 }

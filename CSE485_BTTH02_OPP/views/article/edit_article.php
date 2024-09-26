@@ -28,7 +28,7 @@
         </nav>
     </header>
     <main class="container mt-5 mb-5">
-        <h3 class="text-center text-uppercase fw-bold">Thêm Mới Bài Viết</h3>
+        <h3 class="text-center text-uppercase fw-bold">Sửa Bài Viết</h3>
         <form action="" method="post">
             <div class="mb-3">
                 <label for="articleTitle" class="form-label">Tiêu đề</label>
@@ -65,7 +65,7 @@
                 <textarea class="form-control" id="articleContent" name="txtContent" rows="5" required></textarea>
             </div>
             <div class="form-group">
-                <input type="submit" value="Thêm" class="btn btn-success">
+                <input type="submit" value="Lưu lại" class="btn btn-success">
                 <a href="index.php?controller=article&action=index" class="btn btn-warning">Quay lại</a>
             </div>
         </form>
