@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                    <form method="POST" action="index.php?controller=login&action=login">
+                    <form method="POST" action="index.php?controller=homepage&action=showHomepage">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
                             <input type="text" class="form-control" name="username" placeholder="username" required>

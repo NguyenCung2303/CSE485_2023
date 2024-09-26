@@ -1,5 +1,5 @@
 <?php
-class User{
+class Login{
     // Thuộc tính
 
     private $id;
