@@ -22,14 +22,14 @@ include("models/Login.php");
         }
         
 
-        public function verifyPw($usrname, $pw) {
-            $user = $this->getUser($usrname);
-            if ($user && password_verify($pw, $user['pw'])) {
+        public function verifyPw($usrname,$pw){
+            $user = $this -> getUser($usrname);
+            if($user && $pw === $user['pw']){
                 return true;
-            } else {
+            }
+            else{
                 return false;
             }
         }
-        
     }
 ?>

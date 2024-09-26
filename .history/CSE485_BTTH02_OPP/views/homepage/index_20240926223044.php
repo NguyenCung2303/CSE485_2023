@@ -43,7 +43,7 @@
                             <a class="nav-link active fw-bold" aria-current="page" href="./">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?controller=home&action=index">Trang ngoài</a>
+                            <a class="nav-link" href="../index.php">Trang ngoài</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?controller=category&action=index">Thể loại</a>
