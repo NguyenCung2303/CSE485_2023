@@ -22,70 +22,68 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
+                        <a class="nav-link" aria-current="page" href="index.php?controller=homepage&action=showHomepage">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="category.php">Thể loại</a>
+                        <a class="nav-link active fw-bold" href="index.php?controller=category&action=index">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  active fw-bold" href="author.php">Tác giả</a>
+                        <a class="nav-link" href="index.php?controller=author&action=index">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="article.php">Bài viết</a>
+                        <a class="nav-link  " href="index.php?controller=article&action=index">Bài viết</a>
                     </li>
                 </ul>
                 </div>
             </div>
         </nav>
+
+        
+
     </header>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_author.php" class="btn btn-success">Thêm mới</a>
+                <a href="add_category.php" class="btn btn-success">Thêm mới</a>
                 <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Tên tác giả </th>
-            <th>Sửa</th>
-            <th>Xóa</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php
+                <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tên thể loại</th>
+        <th>Sửa</th>
+        <th>Xóa</th>
+    </tr>
+</thead>
+<tbody>
+<?php
 
-// Truy vấn lấy danh sách tác giả
-$sql = "SELECT ma_tgia, ten_tgia FROM tacgia";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $stt=1;
-    // Hiển thị tác giả
-    while($row = $result->fetch_assoc()) {
+// Kiểm tra xem biến $categorys đã được khởi tạo hay chưa
+if (isset($categorys) && is_array($categorys)) {
+    foreach ($categorys as $category) {
         echo "<tr>";
-        echo "<th scope='row'>" . $stt . "</th>";
-        echo "<td>" . $row['ten_tgia'] . "</td>";
-        echo "<td><a href='edit_author.php?id=" . $row['ma_tgia'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-        echo "<td><a href='delete_author.php?id=" . $row['ma_tgia'] . "'><i class='fa-solid fa-trash'></i></a></td>";
+        echo "<td>{$category->getID()}</td>";
+        echo "<td>{$category->getCat_name()}</td>"; // In tên thể loại
+        echo "<td><a href='edit_author.php?id={$category->getID()}'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+        echo "<td><a href='del_author.php?id={$category->getID()}'><i class='fa-solid fa-trash'></i></a></td>";
         echo "</tr>";
-        $stt++;
     }
 } else {
-    echo "<tr><td colspan='4'>Không có tác giả nào.</td></tr>";
+    echo "<tr><td colspan='4' class='text-center'>Không có thể loại nào</td></tr>";
 }
 ?>
 
-    </tbody>
-</table>
+</tbody>
+
+
+                </table>
             </div>
         </div>
+        
     </main>
-    
-
     <footer class="bg-white d-flex justify-content-center align-items-center border-top border-secondary  border-2" style="height:80px">
         <h4 class="text-center text-uppercase fw-bold">TLU's music garden</h4>
     </footer>

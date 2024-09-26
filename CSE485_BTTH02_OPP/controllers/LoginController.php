@@ -1,13 +1,9 @@
 <?php
 // controllers/LoginController.php
 
-<<<<<<< HEAD:CSE485_BuoiThucHanh2_NhomCANP/app/controllers/login.php
-require_once(__DIR__ . '/../models/login.php');
-=======
-require_once 'models/UserModel.php';
->>>>>>> 342b362e51794a912690b08b676e9dcdf1f728e1:CSE485_BuoiThucHanh2_NhomCANP/controllers/login.php
+require_once(__DIR__ . '/../models/Login.php');
 
-class LoginController {
+class LoginController{
     private $userModel;
 
     public function __construct($dbConnection) {
@@ -29,7 +25,7 @@ class LoginController {
             $user = $this->userModel->checkLogin($username, $password);
             if ($user) {
                 $_SESSION['username'] = $user['username'];
-                header('Location: index.php?controller=home');
+                header('Location: index.php?controller=homepage&action=showHomepage');
             } else {
                 $error = "Tên đăng nhập hoặc mật khẩu không chính xác!";
                 include 'views/login_form.php';

@@ -1,11 +1,13 @@
 <?php
-class ArticleController{
+include("services/CategoryService.php");
+class CategoryController{
     // Hàm xử lý hành động index
     public function index(){
         // Nhiệm vụ 1: Tương tác với Services/Models
-        echo "Tương tác với Services/Models from Article";
+        $categoryService = new CategoryService();
+        $categorys = $categoryService->getAllCategorys();
         // Nhiệm vụ 2: Tương tác với View
-        echo "Tương tác với View from Article";
+        include("views/category/index.php");
     }
 
     public function add(){

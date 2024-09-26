@@ -1,3 +1,9 @@
+<?php
+// index.php
+if (isset($_GET['controller']) && $_GET['controller'] == 'login') 
+    // Hiển thị form đăng nhập
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

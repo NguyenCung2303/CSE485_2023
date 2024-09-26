@@ -26,9 +26,11 @@
                     <a class="nav-link active" aria-current="page" href="./">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="index.php?controller=user">Đăng nhập</a>
+                    <a class="nav-link" href="index.php?controller=login&action=showForm">Đăng nhập</a>
                     </li>
+                    
                 </ul>
+                
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Nội dung cần tìm" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Tìm</button>
@@ -69,7 +71,7 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card mb-2" style="width: 100%;">
-                    <img src="assets/images/songs/cayvagio.jpg" class="card-img-top" alt="...">
+                    <img src="app/assets/images/songs/cayvagio.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
                             <a href="" class="text-decoration-none">Cây, lá và gió</a>

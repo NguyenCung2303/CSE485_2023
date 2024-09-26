@@ -2,7 +2,7 @@
 include("configs/DBConnection.php");
 include("models/Category.php");
 class CategoryService{
-    public function getAllCategory(){
+    public function getAllCategorys(){
         // 4 bước thực hiện
        $dbConn = new DBConnection();
        $conn = $dbConn->getConnection();
@@ -14,11 +14,10 @@ class CategoryService{
         // B3. Xử lý kết quả
         $categorys = [];
         while($row = $stmt->fetch()){
-            $category = new CategoryModel($row['ma_tloai'], $row['ten_tloai']);
+            $category = new Category($row['ma_tloai'],$row['ten_tloai']);
             array_push($categorys,$category);
-            $categorys[] = $category;
         }
-        // Mảng (danh sách) các đối tượng Category Model
+        // Mảng (danh sách) các đối tượng Article Model
 
         return $categorys;
     }
