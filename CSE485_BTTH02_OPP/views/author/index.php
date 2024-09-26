@@ -25,7 +25,7 @@
                         <a class="nav-link" aria-current="page" href="index.php?controller=homepage&action=showHomepage">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.php">Trang ngoài</a>
+                        <a class="nav-link" href="index.php?controller=home&action=index">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="index.php?controller=category&action=index">Thể loại</a>

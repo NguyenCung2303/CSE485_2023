@@ -9,8 +9,8 @@ $controller = ucfirst($controller) . 'Controller';
 $controllerPath = 'controllers/' . $controller . '.php';
 
 //test
-echo "Controller: " . $controller . "<br>";
-echo "Action: " . $action . "<br>";
+// echo "Controller: " . $controller . "<br>";
+// echo "Action: " . $action . "<br>";
 
 //
 
